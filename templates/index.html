@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortivago Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='logo.jpg') }}?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-area">
+            <div class="img-wrapper">
+                <img src="{{ url_for('static', filename='perfil.jfif') }}" alt="Logo Mortivago" class="profile-img">
+            </div>
+            <h1>Pietro Nunes</h1>
+            <p>Full Stack Developer</p>
+        </div>
+
+        <div class="links-grid">
+            <div class="menu-group">
+                <div class="link-card" id="card-morti" onclick="toggleMenu('morti-menu', 'chevron-morti', 'card-morti')">
+                    <i class="fa-solid fa-microchip"></i>
+                    <div class="text">
+                        <h3>Sistemas</h3>
+                        <p>Status e Ativos do Sistema</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down chevron" id="chevron-morti"></i>
+                </div>
+                <div id="morti-menu" class="dropdown">
+                    <a href="/mortiscan" class="dropdown-item">
+                        <div class="status-dot {{ status }}"></div>
+                        <span>Acessar Mortiscan V1</span>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-group">
+                <div class="link-card" id="card-lang" onclick="toggleMenu('lang-menu', 'chevron-lang', 'card-lang')">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <div class="text">
+                        <h3>Portfólio</h3>
+                        <p>Escolha um idioma / Select language</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down chevron" id="chevron-lang"></i>
+                </div>
+                <div id="lang-menu" class="dropdown">
+                    <a href="/portfolio/pt" class="dropdown-item">
+                        <img src="https://flagcdn.com/w80/br.png" class="flag"> <span>Português</span>
+                    </a>
+                    <a href="/portfolio/en" class="dropdown-item">
+                        <img src="https://flagcdn.com/w80/us.png" class="flag"> <span>English</span>
+                    </a>
+                </div>
+            </div>
+
+            <a href="https://github.com/mortivago" target="_blank" class="link-card">
+                <i class="fa-brands fa-github"></i>
+                <div class="text">
+                    <h3>GitHub</h3>
+                    <p>Meus projetos</p>
+                </div>
+            </a>
+
+            <a href="https://www.tiktok.com/@mortivago" target="_blank" class="link-card">
+                <i class="fa-brands fa-tiktok"></i>
+                <div class="text">
+                    <h3>TikTok</h3>
+                    <p>Meu perfil no TikTok</p>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/@mortivago" target="_blank" class="link-card">
+                <i class="fa-brands fa-youtube"></i>
+                <div class="text">
+                    <h3>YouTube</h3>
+                    <p>Meu canal no YouTube</p>
+                </div>
+            </a>
+
+            <a href="https://discord.gg/KdB6DmD9zD" target="_blank" class="link-card">
+                <i class="fa-brands fa-discord"></i>
+                <div class="text">
+                    <h3>Discord</h3>
+                    <p>Meu servidor do Discord</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu(menuId, chevronId, cardId) {
+            const menu = document.getElementById(menuId);
+            const chevron = document.getElementById(chevronId);
+            const card = document.getElementById(cardId);
+            const isOpen = menu.classList.contains('active');
+
+            // Fecha outros menus abertos para manter a estética
+            document.querySelectorAll('.dropdown').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.link-card').forEach(c => c.classList.remove('active-parent'));
+            document.querySelectorAll('.chevron').forEach(s => s.style.transform = 'rotate(0deg)');
+
+            if (!isOpen) {
+                menu.classList.add('active');
+                card.classList.add('active-parent');
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>

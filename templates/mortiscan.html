@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>mortiscan // internal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-transform: lowercase; }
+        .monitor-card { background: rgba(255,255,255,0.02); border: 1px solid #1a1a1a; padding: 40px; border-radius: 20px; width: 300px; display: flex; justify-content: space-between; align-items: center; }
+        .online .dot { background: #00ff88; box-shadow: 0 0 20px #00ff88; }
+        .offline .dot { background: #333; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .back-link { position: absolute; bottom: 50px; color: #444; text-decoration: none; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="monitor-card {{ status }}">
+        <div>
+            <h2 style="margin:0; font-size: 1.1rem;">toddybot</h2>
+            <span style="font-size: 0.8rem; color: {{ '#00ff88' if status == 'online' else '#666' }}">{{ status }}</span>
+        </div>
+        <div class="dot"></div>
+    </div>
+    <a href="/" class="back-link">← voltar ao hub</a>
+    <script>setTimeout(() => { location.reload(); }, 10000);</script>
+</body>
+</html>
